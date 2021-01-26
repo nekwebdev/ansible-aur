@@ -43,7 +43,7 @@ options:
         description:
             - The tool to use, 'auto' uses the first known helper found and makepkg as a fallback.
         default: auto
-        choices: [ auto, yay, pacaur, trizen, pikaur, aurman, makepkg ]
+        choices: [ auto, paru, yay, pacaur, trizen, pikaur, aurman, makepkg ]
 
     extra_args:
         description:
@@ -103,6 +103,7 @@ EXAMPLES = '''
 def_lang = ['env', 'LC_ALL=C']
 
 use_cmd = {
+    'paru': ['paru', '-S', '--noconfirm', '--needed', '--cleanafter'],
     'yay': ['yay', '-S', '--noconfirm', '--needed', '--cleanafter'],
     'pacaur': ['pacaur', '-S', '--noconfirm', '--noedit', '--needed'],
     'trizen': ['trizen', '-S', '--noconfirm', '--noedit', '--needed'],
@@ -116,7 +117,7 @@ use_cmd_local_pkgbuild = {
     'makepkg': ['makepkg', '--syncdeps', '--install', '--noconfirm', '--needed']
 }
 
-has_aur_option = ['yay', 'pacaur', 'trizen', 'pikaur', 'aurman']
+has_aur_option = ['paru', 'yay', 'pacaur', 'trizen', 'pikaur', 'aurman']
 
 
 def package_installed(module, package):
